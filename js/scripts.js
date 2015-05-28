@@ -13,14 +13,12 @@ var wordOrder = function(sentence) {
 }
 
 var wordHashToString = function(wordHash) {
-
   var highCount = 0;
   for(key in wordHash) {
     if(wordHash[key] > highCount) {
       highCount = wordHash[key];
     }
   }
-
   var outputString = "";
 
   while(highCount > 0) {
@@ -33,5 +31,17 @@ var wordHashToString = function(wordHash) {
   }
   outputString = outputString.trim();
   return outputString;
-
 }
+
+$(document).ready(function() {
+  $("#romannumerals").submit(function(event) {
+    var input = ($("input#input-string").val());
+    var translatedInput = wordOrder(input);
+    var finalOutput = wordHashToString(translatedInput)
+    $(".output").text(finalOutput);
+    $("#result").slideToggle("slow");
+    $(".panel").fadeIn("slow");
+    event.preventDefault();
+  });
+
+});
