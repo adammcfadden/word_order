@@ -9,3 +9,17 @@ describe("wordOrder", function() {
   });
 
 });
+
+describe("wordHashToString", function() {
+  it("will convert the hashes returned by wordOrder to a web-friendly formatted string", function() {
+    expect(wordHashToString(wordOrder("fun fun gun"))).to.equal("fun: 2. gun: 1.");
+  });
+
+  it("will reorder the string output to have words with the most occurances first", function() {
+    expect(wordHashToString(wordOrder("fun gun done gun done done"))).to.equal("done: 3. gun: 2. fun: 1.");
+  });
+
+  it("will reorder the string output to have words with the most occurances first, and if occuances are the same, place the word entered first in front.", function() {
+    expect(wordHashToString(wordOrder("fun gun gun done gun done done"))).to.equal("gun: 3. done: 3. fun: 1.");
+  });
+});
